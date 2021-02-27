@@ -24,7 +24,7 @@ import "../style/index.scss";
  */
 
 function render(variables = {}) {
-  console.log("These are the current variables: ", variables); //print on the console
+  //console.log("These are the current variables: ", variables); //print on the console
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
@@ -54,6 +54,7 @@ function render(variables = {}) {
  * Don't change any of the lines below, here is where we do the logic for the dropdowns
  */
 window.onload = function() {
+
   window.variables = {
     // if includeCover is true the algorithm should
     includeCover: true,
@@ -74,12 +75,15 @@ window.onload = function() {
     country: null,
     city: null
   };
+  
   render(window.variables); //render the card for the first time
 
-  document.querySelectorAll(".picker").forEach(function(elm) {
+  const picker = document.querySelectorAll(".picker");
+  
+    picker.forEach(function(elm) {
     // // console.log(elm);
+    // Add a listener to every input
     elm.addEventListener("change", function(e) {
-      // <- add a listener to every input
       const attribute = e.target.getAttribute("for"); // when any input changes, collect the value
       let values = {};
       values[attribute] =
